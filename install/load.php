@@ -6,8 +6,11 @@
 */
 @session_start();
 if (!defined('IN_CONTEXT')) die('access violation error!');
-ini_set("display_errors","off");
-error_reporting(E_ALL ^ E_NOTICE);
+//ini_set("display_errors","off");
+//error_reporting(E_ALL ^ E_NOTICE);
+
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
 
 define('DS', DIRECTORY_SEPARATOR);
 
@@ -20,7 +23,7 @@ header("Content-type: text/html; charset=utf-8");
 
 include_once(P_LIB.'/toolkit.php');
 include_once P_LIB."/param.php";
-define("DOMAINCONST",Toolkit::domainconst());
+
 include_once ROOT."/include/fun_install.php";
 include_once INSTALL_ROOT."/include/http.class.php";
 $_a = ParamHolder::get("_a","");
@@ -69,7 +72,7 @@ if($_a=='template'){
 	$vphp = PHP_VERSION;
 	$vmysql = $_SESSION['vmysql'];
 	$tpl_name = $_SESSION['default_tpl'];
-	$http = new Http("http://licence.sitestar.cn/feedback.php?domain=$domain&ip=$ip&version=$version&vphp=$vphp&vmysql=$vmysql&tpl_name=$tpl_name&vos=$system");
+	$http = new HttpFunc("http://licence.sitestar.cn/feedback.php?domain=$domain&ip=$ip&version=$version&vphp=$vphp&vmysql=$vmysql&tpl_name=$tpl_name&vos=$system");
 	$http->get();
 	include P_TPL."/result.php";
 

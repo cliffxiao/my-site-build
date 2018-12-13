@@ -1,5 +1,5 @@
 <?php
-class Http { 
+class HttpFunc {
 
     private $_url = '';
 
@@ -25,7 +25,7 @@ class Http {
 
     public $err_str = '';
 
-    public function Http($url = '') { 
+    public function __construct($url = '') {
         $this->_url = $url; 
     } 
     
